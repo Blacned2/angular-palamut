@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { AppComponent } from './app.component';
+import { AppComponent } from '../app.component';
 import { AppMainComponent } from './app.main.component';
 
 @Component({

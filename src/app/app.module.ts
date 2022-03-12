@@ -88,8 +88,8 @@ import {TreeTableModule} from 'primeng/treetable';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 
 import {AppComponent} from './app.component';
-import {AppCodeModule} from './app.code.component'
-import {AppMainComponent} from './app.main.component';
+import {AppCodeModule} from './app-components/app.code.component'
+import {AppMainComponent} from './app-components/app.main.component';
 import {AppCrudComponent} from './pages/app.crud.component';
 import {AppCalendarComponent} from './pages/app.calendar.component';
 import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
@@ -97,11 +97,11 @@ import {AppNotfoundComponent} from './pages/app.notfound.component';
 import {AppErrorComponent} from './pages/app.error.component';
 import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
 import {AppLoginComponent} from './pages/app.login.component';
-import {AppMenuComponent} from './app.menu.component';
-import {AppMenuitemComponent} from './app.menuitem.component';
-import {AppRightMenuComponent} from './app.right-menu.component';
-import {AppTopBarComponent} from './app.topbar.component';
-import {AppFooterComponent} from './app.footer.component';
+import {AppMenuComponent} from './app-components/app.menu.component';
+import {AppMenuitemComponent} from './app-components/app.menuitem.component';
+import {AppRightMenuComponent} from './app-components/app.right-menu.component';
+import {AppTopBarComponent} from './app-components/app.topbar.component';
+import {AppFooterComponent} from './app-components/app.footer.component';
 import {FormLayoutDemoComponent} from './demo/view/formlayoutdemo.component';
 import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
 import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
@@ -134,7 +134,7 @@ import {WidgetsComponent} from './utilities/widgets.component';
 import {CountryService} from './demo/service/countryservice';
 import {EventService} from './demo/service/eventservice';
 import {NodeService} from './demo/service/nodeservice';
-import {MenuService} from './app.menu.service';
+import {MenuService} from './app-components/app.menu.service';
 import {CustomerService} from './demo/service/customerservice';
 import {PhotoService} from './demo/service/photoservice';
 import {ProductService} from './demo/service/productservice';
