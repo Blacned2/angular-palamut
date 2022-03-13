@@ -1,10 +1,22 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Message, MessageService } from 'primeng/api';
+import { UserModel } from '../models/user';
 
 @Component({
   selector: 'app-login',
+  styles: [`
+        :host ::ng-deep .p-button {
+            min-width: 8em;
+        }
+
+		:host ::ng-deep .p-message {
+			margin-left: .25em;
+		}
+    `],
+    styleUrls:['./app.login.component.scss'],
+  providers: [],
   templateUrl: './app.login.component.html',
 })
 export class AppLoginComponent {
@@ -13,12 +25,12 @@ export class AppLoginComponent {
 
   }
 
+  item: UserModel = { userName: null, password: null };
   loginUrl: string = 'https://localhost:44350/api/User/Login';
   invalidLogin: boolean;
 
-  login(form: NgForm) {
-    const credentials = JSON.stringify(form.value);
-    this.httpClient.post(this.loginUrl, credentials, {
+  login(data: UserModel) {
+    this.httpClient.post(this.loginUrl, data, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })
@@ -31,4 +43,8 @@ export class AppLoginComponent {
       this.invalidLogin = true;
     });
   }
+
+  
+
+
 }

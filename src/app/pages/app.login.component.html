@@ -1,35 +1,31 @@
 <div class="login-body">
-    <div class="card login-panel p-fluid">
-        <div class="login-panel-content">
-            <form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-                <h2 class="form-signin-heading">Giriş</h2>
-                <br>
-                <div *ngIf="invalidLogin" class="alert alert-danger ng-invalid">Invalid username or password.</div>
-                <div class="col-md-12">
-                    <label for="username" class="sr-only">Kullanıcı Adı</label>
-                    <input *ngIf="!invalidLogin" type="email" id="username" pInputText name="username" ngModel class=""
+    
+        <form class="form-signin loginScreen" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+            <h1>Giris Yap</h1>
+                <span class="p-float-label loginSpan">
+                    <input *ngIf="!invalidLogin" type="email" [ngModel]="item.userName" pInputText name="userName" ngModel
                         required autofocus>
-                    <input *ngIf="invalidLogin" type="email" id="username" pInputText ngModel
-                        class="p-inputtext p-component p-element ng-invalid ng-dirty" required autofocus>
-                </div>
-                <div class="col-md-12">
+                    <input *ngIf="invalidLogin" type="email" [ngModel]="item.userName" pInputText name="userName" pInputText
+                        ngModel class="p-inputtext p-component p-element ng-invalid ng-dirty" required autofocus>
+                    <label *ngIf="!invalidLogin" for="username">Kullanıcı Adı</label>
+                    <label *ngIf="invalidLogin" class="ng-invalid ng-dirty" for="username">Kullanıcı Adı</label>
+                </span>
+    
+                <span class="p-float-label loginSpan">
+                    <input *ngIf="!invalidLogin" type="password" [ngModel]="item.password" name="password" ngModel pPassword
+                    autofocus required>
+                    <input *ngIf="invalidLogin" type="password" [ngModel]="item.password" name="password" ngModel pPassword
+                    class="ng-invalid ng-dirty" autofocus required>
                     <label for="password" class="sr-only">Şifre</label>
-                    <input *ngIf="!invalidLogin" type="password" id="password" name="password" ngModel pPassword
-                        autofocus required>
-                    <input *ngIf="invalidLogin" type="password" id="password" name="password" ngModel pPassword
-                        class="ng-invalid ng-dirty" autofocus required>
-
-                </div>
-                <br>
-                <div class="col-md-12">
+    
+                </span>
+                <div class="loginButton">
                     <button [routerLink]="['/']" pButton type="submit" icon="pi pi-check" label="Sign In"></button>
                 </div>
-                <br>
                 <div class="col-md-12">
                     <a class="text-primary" [routerLink]="['/register']" type="submit">Hala kayit olmadiniz mi ? <span
                             style="font-weight: 600;">Buyrun</span></a>
                 </div>
-            </form>
-        </div>
-    </div>
+            
+        </form>
 </div>

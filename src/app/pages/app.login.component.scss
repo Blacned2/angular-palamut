@@ -1,0 +1,32 @@
+.loginScreen{
+    position: absolute;
+    display: flex;
+    width: 556px;
+    height: 100%;
+    right: 0;
+    background-color: white;
+    opacity: .9;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    .loginSpan {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 60%;
+        margin: 1em;
+    }
+    .loginButton {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 40%;
+        margin: 1em;
+    }
+}
+
+@media screen and (max-width: 40em) {
+
+}
