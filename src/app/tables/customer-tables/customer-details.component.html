@@ -6,7 +6,7 @@
             </div>
             <div class="user-card-content">
                 <img src="assets/layout/images/avatar.png" library="roma-layout" />
-                <button pButton type="button" icon="pi pi-cog"></button>
+                <button pButton type="button" icon="pi pi-cog" (click)="profileSettings()"></button>
 
                 <div class="user-card-name">
                     <span>{{item.alici.aliciName}}</span>
@@ -138,5 +138,31 @@
                 </div>
             </div>
         </div>
+
+        <p-dialog [(visible)]="customerDialog" [style]="{width: '700px'}" header="Customer Details" [modal]="true"
+			styleClass="p-fluid">
+			<ng-template pTemplate="content">
+				<div class="p-field">
+					<label for="name">Name</label>
+					<input type="text" pInputText id="aliciName" [(ngModel)]="item.aliciName" required autofocus />
+					<small class="p-invalid" *ngIf="submitted && !item.aliciName">Name is required.</small>
+				</div>
+				<div class="p-field">
+					<label for="description">Address</label>
+					<input type="text" pInputText id="address" [(ngModel)]="item.address" required autofocus />
+				</div>
+				<div class="p-field">
+					<label for="description">Phone Number</label>
+					<input type="text" pInputText id="aliciTelNo" [(ngModel)]="item.aliciTelNo" required
+						autofocus />
+				</div>
+			</ng-template>
+			<ng-template pTemplate="footer">
+				<button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+					(click)="hideDialog()"></button>
+				<button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+					(click)="saveCustomer()"></button>
+			</ng-template>
+		</p-dialog>
     </div>
 </div>

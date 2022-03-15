@@ -10,6 +10,7 @@ import { customersModel } from 'src/app/models/customers';
 })
 export class CustomerDetailsComponent implements OnInit {
 
+  customerDialog:boolean = false;
   isDataLoaded:boolean = false;
   id: any;
   item: customerModel = {alici:{address:'',aliciID:0,aliciName:'',aliciTelNo:''},alicilar:null,maxPage:null,status:null};
@@ -21,6 +22,10 @@ export class CustomerDetailsComponent implements OnInit {
     this.isDataLoaded=true;
   }
 
+  profileSettings(data: customerModel['alici']) {
+    this.item.alici = {...data};
+    this.customerDialog = true;
+}
 
   getId() {
     this.route.paramMap.subscribe(paramMap => {
