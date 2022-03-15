@@ -10,22 +10,42 @@ import { customersModel } from 'src/app/models/customers';
 })
 export class CustomerDetailsComponent implements OnInit {
 
-  customerDialog:boolean = false;
-  isDataLoaded:boolean = false;
+  customerDialog: boolean = false;
+  isDataLoaded: boolean = false;
   id: any;
-  item: customerModel = {alici:{address:'',aliciID:0,aliciName:'',aliciTelNo:''},alicilar:null,maxPage:null,status:null};
+  item: customerModel = { alici: { address: '', aliciID: 0, aliciName: '', aliciTelNo: '' }, alicilar: null, maxPage: null, status: null };
   customerGetUrl = 'https://localhost:44350/api/Alicilar/SingleAlici/';
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router) {}
+  addUpdateUrl = 'https://localhost:44350/api/Alicilar/AliciEkleGuncelle';
+  submitted: boolean;
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router) { }
   ngOnInit(): void {
     this.getId();
     this.getData();
-    this.isDataLoaded=true;
+    this.isDataLoaded = true;
   }
 
-  profileSettings(data: customerModel['alici']) {
-    this.item.alici = {...data};
+
+  customer: customerModel['alicilar'];
+
+  editAction(customer: customersModel['alicilar']) {
+    this.customer = { ...customer };
     this.customerDialog = true;
-}
+    console.log(this.customer)
+  }
+
+  hideDialog(){
+    this.customerDialog = false;
+  }
+
+  saveCustomer() {
+    this.submitted = true;
+    if (this.customer.aliciID) {
+      this.httpClient.post(this.addUpdateUrl + '?id=' + this.customer.aliciID, this.customer).subscribe((result) => {
+        console.log(result, 'edit');
+        this.customerDialog = false;
+      })
+    }
+  }
 
   getId() {
     this.route.paramMap.subscribe(paramMap => {
