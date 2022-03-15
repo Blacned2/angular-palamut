@@ -108,6 +108,7 @@ import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component'
 import {InputDemoComponent} from './demo/view/inputdemo.component';
 import {ButtonDemoComponent} from './demo/view/buttondemo.component';
 import {TableDemoComponent} from './demo/view/tabledemo.component';
+import { CustomersComponent } from './tables/customer-tables/customers-list.component';
 import {ListDemoComponent} from './demo/view/listdemo.component';
 import {TreeDemoComponent} from './demo/view/treedemo.component';
 import {PanelsDemoComponent} from './demo/view/panelsdemo.component';
@@ -146,6 +147,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRegisterComponent } from './pages/app.register.component';
+import { CustomerDetailsComponent } from './tables/customer-tables/customer-details.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -298,7 +300,9 @@ export function tokenGetter(){
         AppErrorComponent,
         AppAccessdeniedComponent,
         AppLoginComponent,
-        AppRegisterComponent
+        AppRegisterComponent,
+        CustomersComponent,
+        CustomerDetailsComponent
     ],
     providers: [
         [AuthGuardService],

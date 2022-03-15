@@ -1,0 +1,142 @@
+<div class="p-grid" *ngIf="isDataLoaded">
+    <div class="p-col-6">
+        <div class="card user-card">
+            <div class="user-card-header">
+                <img src="assets/layout/images/dashboard/bg-header.png" library="roma-layout" />
+            </div>
+            <div class="user-card-content">
+                <img src="assets/layout/images/avatar.png" library="roma-layout" />
+                <button pButton type="button" icon="pi pi-cog"></button>
+
+                <div class="user-card-name">
+                    <span>{{item.alici.aliciName}}</span>
+                </div>
+
+                <div class="user-detail">
+                    <div class="p-grid">
+                        <div class="p-col-4">
+                            <div class="user-detail-box">
+                                <div class="user-detail-box-name">Tasks</div>
+                                <div class="user-detail-box-detail">3 open</div>
+                                <i class="pi pi-list"></i>
+                                <p-progressBar [value]="60"></p-progressBar>
+                            </div>
+                        </div>
+                        <div class="p-col-4">
+                            <div class="user-detail-box">
+                                <div class="user-detail-box-name">Revenue</div>
+                                <div class="user-detail-box-detail">+20%</div>
+                                <i class="pi pi-dollar"></i>
+                                <p-progressBar [value]="80"></p-progressBar>
+                            </div>
+                        </div>
+                        <div class="p-col-4">
+                            <div class="user-detail-box">
+                                <div class="user-detail-box-name">Payments</div>
+                                <div class="user-detail-box-detail">24 New</div>
+                                <i class="pi pi-money-bill"></i>
+                                <p-progressBar [value]="60"></p-progressBar>
+                            </div>
+                        </div>
+                        <div class="p-col-4">
+                            <div class="user-detail-box">
+                                <div class="user-detail-box-name">Clients</div>
+                                <div class="user-detail-box-detail">+80%</div>
+                                <i class="pi pi-users"></i>
+                                <p-progressBar [value]="50"></p-progressBar>
+                            </div>
+                        </div>
+                        <div class="p-col-4">
+                            <div class="user-detail-box">
+                                <div class="user-detail-box-name">Sales</div>
+                                <div class="user-detail-box-detail">3 open</div>
+                                <i class="pi pi-money-bill"></i>
+                                <p-progressBar [value]="60"></p-progressBar>
+                            </div>
+                        </div>
+                        <div class="p-col-4">
+                            <div class="user-detail-box">
+                                <div class="user-detail-box-name">Tasks</div>
+                                <div class="user-detail-box-detail">3 open</div>
+                                <i class="pi pi-chart-bar"></i>
+                                <p-progressBar [value]="60"></p-progressBar>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-col-6 p-xl-6">
+        <div class="card card-w-title live-support">
+            <h5>Live Support</h5>
+            <ul>
+                <li class="message-from">
+                    <div class="p-grid">
+                        <div class="p-col-fixed">
+                            <img src="assets/layout/images/avatar-2.png" alt="roma-layout" />
+                        </div>
+                        <div class="p-col">
+                            <div class="chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Nam ac euismod justo, eget blandit purus.</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="message-to">
+                    <div class="p-grid">
+                        <div class="p-col">
+                            <div class="chat-message">Mauris malesuada quis risus ut consequat.
+                                Maecenas ornare nunc risus, pulvinar euismod mi pellentesque eget.</div>
+                        </div>
+                        <div class="p-col-fixed">
+                            <img src="assets/layout/images/avatar-1.png" alt="roma-layout" />
+                        </div>
+                    </div>
+                </li>
+                <li class="message-from">
+                    <div class="p-grid">
+                        <div class="p-col-fixed">
+                            <img src="assets/layout/images/avatar-2.png" alt="roma-layout" />
+                        </div>
+                        <div class="p-col">
+                            <div class="chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Nam ac euismod justo, eget blandit purus.</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="message-to">
+                    <div class="p-grid">
+                        <div class="p-col">
+                            <div class="chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                        </div>
+                        <div class="p-col-fixed">
+                            <img src="assets/layout/images/avatar-1.png" alt="roma-layout" />
+                        </div>
+                    </div>
+                </li>
+                <li class="message-to">
+                    <div class="p-grid">
+                        <div class="p-col">
+                            <div class="chat-message">Mauris malesuada quis risus ut consequat.
+                                Maecenas ornare nunc risus, pulvinar euismod mi pellentesque eget.</div>
+                        </div>
+                        <div class="p-col-fixed">
+                            <img src="assets/layout/images/avatar-1.png" alt="roma-layout" />
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="new-message">
+                <div class="p-grid p-nogutter">
+                    <div class="p-col">
+                        <input id="input" type="text" pInputText placeholder="Write a message..">
+                    </div>
+                    <div class="p-col-fixed">
+                        <button pButton type="button" label="Send"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

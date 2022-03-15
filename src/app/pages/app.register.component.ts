@@ -17,6 +17,7 @@ export class AppRegisterComponent {
 
   register(form: NgForm) {
     const credentials = JSON.stringify(form.value);
+    console.log(credentials)
     this.httpClient.post(this.registerUrl, credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
@@ -25,7 +26,7 @@ export class AppRegisterComponent {
       const token = (<any>response).token;
       localStorage.setItem('jwt', token);
       this.invalidLogin = false;
-      this.router.navigate(['/lgn']);
+      this.router.navigate(['/']);
     }, err => {
       this.invalidLogin = true;
     })
