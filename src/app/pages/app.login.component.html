@@ -1,31 +1,40 @@
 <div class="login-body">
-    
-        <form class="form-signin loginScreen" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
-            <h1>Giris Yap</h1>
-                <span class="p-float-label loginSpan">
-                    <input *ngIf="!invalidLogin" type="email" [ngModel]="item.userName" pInputText name="userName" ngModel
-                        required autofocus>
-                    <input *ngIf="invalidLogin" type="email" [ngModel]="item.userName" pInputText name="userName" pInputText
-                        ngModel class="p-inputtext p-component p-element ng-invalid ng-dirty" required autofocus>
-                    <label *ngIf="!invalidLogin" for="username">Kullanıcı Adı</label>
-                    <label *ngIf="invalidLogin" class="ng-invalid ng-dirty" for="username">Kullanıcı Adı</label>
-                </span>
-    
-                <span class="p-float-label loginSpan">
-                    <input *ngIf="!invalidLogin" type="password" [ngModel]="item.password" name="password" ngModel pPassword
-                    autofocus required>
-                    <input *ngIf="invalidLogin" type="password" [ngModel]="item.password" name="password" ngModel pPassword
-                    class="ng-invalid ng-dirty" autofocus required>
-                    <label for="password" class="sr-only">Şifre</label>
-    
-                </span>
-                <div class="loginButton">
-                    <button [routerLink]="['/']" pButton type="submit" icon="pi pi-check" label="Sign In"></button>
-                </div>
-                <div class="col-md-12">
-                    <a class="text-primary" [routerLink]="['/register']" type="submit">Hala kayit olmadiniz mi ? <span
-                            style="font-weight: 600;">Buyrun</span></a>
-                </div>
+    <form class="form-signin loginScreen" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+        <img src="../../assets/layout/images/part+1+p-1320568343314317876.png" alt="Bulunamadi" width="150px">
+        <h1>Giris Yap</h1>
+        <span class="p-float-label loginSpan">
+            <input *ngIf="!invalidLogin" type="email" [ngModel]="item.userName" pInputText name="userName" ngModel
+                required autofocus>
+            <input *ngIf="invalidLogin" type="email" [ngModel]="item.userName" pInputText name="userName" pInputText
+                ngModel class="p-inputtext p-component p-element ng-invalid ng-dirty" required autofocus>
+            <label *ngIf="!invalidLogin" for="username">Kullanıcı Adı</label>
+            <label *ngIf="invalidLogin" class="ng-invalid ng-dirty" for="username">Kullanıcı Adı</label>
+        </span>
+
+        <span class="p-float-label loginSpan">
+            <input *ngIf="!invalidLogin" type="password" [ngModel]="item.password" name="password" ngModel pPassword
+                autofocus required>
+            <input *ngIf="invalidLogin" type="password" [ngModel]="item.password" name="password" ngModel pPassword
+                class="ng-invalid ng-dirty" autofocus required>
+            <label for="password" class="sr-only">Şifre</label>
+
+        </span>
+        <div class="loginButton">
+            <button [routerLink]="['/']" pButton type="submit" icon="pi pi-check" label="Sign In"></button>
+        </div>
+        <div class="col-md-12">
+            <a class="text-primary" [routerLink]="['/register']" type="submit">Hala kayit olmadiniz mi ? <span
+                    style="font-weight: 600;">Buyrun</span></a>
+        </div>
+        <br>
+        <p-divider layout="horizontal">
+            <b>Yada</b>
+        </p-divider>
+        <div class="col-md-12">
             
-        </form>
+            <button class="p-m-1" pTooltip="Facebook hesabinizla giris yapin" pButton pRipple icon="pi pi-facebook" (click)="loginWithFacebook()"></button>
+            <button pButton class="p-m-1" pTooltip="Google hesabinizla giris yapin" pRipple icon="pi pi-google" (click)="loginWithFacebook()"></button>
+            <button pButton class="p-m-1" pTooltip="Twitter hesabinizla giris yapin" pRipple icon="pi pi-twitter" (click)="loginWithFacebook()"></button>
+        </div>
+    </form>
 </div>
