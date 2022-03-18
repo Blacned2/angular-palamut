@@ -9,6 +9,7 @@ import {
     FacebookLoginProvider,
     SocialLoginModule,
     SocialAuthServiceConfig,
+    GoogleLoginProvider,
 } from 'angularx-social-login';
 import { AccordionModule } from 'primeng/accordion';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -319,7 +320,11 @@ export function tokenGetter() {
                     {
                         id: FacebookLoginProvider.PROVIDER_ID,
                         provider: new FacebookLoginProvider('678816283240557'),
-                    }
+                    },
+                    {
+                        id:GoogleLoginProvider.PROVIDER_ID,
+                        provider: new GoogleLoginProvider('466908777107-hlp3ic88nkmk5akp7aa337tr00diol4q.apps.googleusercontent.com'),
+                    },
                 ],
             } as SocialAuthServiceConfig,
         },

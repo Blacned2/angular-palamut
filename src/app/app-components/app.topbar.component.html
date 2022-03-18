@@ -20,10 +20,11 @@
     <ul  class="topbar-menu" >
         <li class="user-profile" [ngClass]="{'active-topmenuitem fadeInDown': appMain.topbarUserMenuActive}">
             <a href="#" (click)="appMain.onTopbarUserMenuButtonClick($event)" *ngIf="!app.inlineUser">
-                <img src="assets/layout/images/avatar.png" alt="roma-layout" />
+                <!-- <img src="assets/layout/images/avatar.png" alt="roma-layout" /> -->
+                <p-avatar label="{{name[0]}}" styleClass="p-mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
                 <div class="layout-profile-userinfo">
-                    <span class="layout-profile-name">Arlene Welch</span>
-                    <span class="layout-profile-role">Design Ops</span>
+                    <span class="layout-profile-name">{{name}}</span>
+                    <span class="layout-profile-role">Developer</span>
                 </div>
             </a>
             <ul class="fadeInDown">
