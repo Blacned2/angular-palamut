@@ -41,6 +41,8 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRegisterComponent } from './pages/app.register.component';
 import { CustomersComponent } from './my-works/customer-tables/customers-list.component';
 import { CustomerDetailsComponent } from './my-works/customer-tables/customer-details.component';
+import { NgrxTutorialComponent } from './my-works/ngrx-tutorial/ngrx-tutorial.component';
+import { NgrxAnotherComponent } from './my-works/ngrx-another/ngrx-another.component';
 
 @NgModule({
     imports: [
@@ -50,7 +52,9 @@ import { CustomerDetailsComponent } from './my-works/customer-tables/customer-de
                 canActivate: [AuthGuardService],
                 children: [
                     { path: '', component: DashboardDemoComponent },
-                    { path: 'customers', component: CustomersComponent},
+                    { path: 'customers', component: CustomersComponent },
+                    { path: 'ngrxTutorial', component: NgrxTutorialComponent },
+                    { path: 'ngrxAnother', component: NgrxAnotherComponent},
                     { path: 'uikit/formlayout', component: FormLayoutDemoComponent },
                     { path: 'uikit/floatlabel', component: FloatLabelDemoComponent },
                     { path: 'uikit/invalidstate', component: InvalidStateDemoComponent },
@@ -82,7 +86,7 @@ import { CustomerDetailsComponent } from './my-works/customer-tables/customer-de
                     { path: 'pages/timeline', component: AppTimelineDemoComponent },
                     { path: 'pages/empty', component: EmptyDemoComponent },
                     { path: 'documentation', component: DocumentationComponent },
-                    { path: 'customer-detail/:id',component: CustomerDetailsComponent},
+                    { path: 'customer-detail/:id', component: CustomerDetailsComponent },
                 ]
             },
             { path: 'error', component: AppErrorComponent },

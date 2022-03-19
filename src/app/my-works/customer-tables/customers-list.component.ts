@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
+import * as XLSX from 'xlsx';
 import { customersModel } from '../../models/customers';
 
 @Component({
@@ -129,6 +130,14 @@ export class CustomersComponent implements OnInit {
                 })
             }
         }
+    }
+
+    exportAsExcel(){
+        const ws:XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.customers1['alicilar']);
+        const wb:XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb,ws,'Customers')
+
+        XLSX.writeFile(wb,'customer-list.xlsx');
     }
 
 }

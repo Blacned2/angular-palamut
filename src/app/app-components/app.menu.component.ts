@@ -44,7 +44,9 @@ export class AppMenuComponent implements OnInit {
             {
                 label:'Yapilanlar',
                 items:[
-                    {label:'Customer Table',icon:'pi pi-fw pi-pencil',routerLink:['/customers']}
+                    {label:'Customer Table',icon:'pi pi-fw pi-pencil',routerLink:['/customers']},
+                    {label:'Ng Redux page1',icon:'pi pi-fw pi-share-alt',routerLink:['/ngrxTutorial']},
+                    {label:'Ng Redux page2',icon:'pi pi-fw pi-share-alt',routerLink:['/ngrxAnother']},
                 ]
             },
             {

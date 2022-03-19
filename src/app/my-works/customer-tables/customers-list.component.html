@@ -29,7 +29,9 @@
 				<ng-template pTemplate="caption">
 					<div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
 						<h5 class="p-m-0">Manage Products</h5>
+						
 						<span class="p-input-icon-left">
+							<button pButton type="button" (click)="exportAsExcel()" class="p-button-help" style="margin-right: 1em;" icon="pi pi-print"></button>
 							<i class="pi pi-search"></i>
 							<input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
 								placeholder="Search..." />
@@ -54,10 +56,10 @@
 					</tr>
 				</ng-template>
 				<ng-template pTemplate="body" let-customer>
-					<tr>
+					<tr id="excel-table">
 						<td>
-							<button routerLink="/customer-detail/{{customer.aliciID}}" pButton pRipple icon="pi pi-key"
-								class="p-button-rounded p-button-success p-mr-2"></button>
+							<button routerLink="/customer-detail/{{customer.aliciID}}" pButton pRipple icon="pi pi-align-justify"
+								class="p-mr-2"></button>
 						</td>
 						<td><span class="p-column-title">#</span>
 							{{customer.aliciID}}

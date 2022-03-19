@@ -11,6 +11,10 @@ import {
     SocialAuthServiceConfig,
     GoogleLoginProvider,
 } from 'angularx-social-login';
+
+//Redux store
+import { counterReducer } from './store/counter.reducer';
+
 import { AccordionModule } from 'primeng/accordion';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { AvatarModule } from 'primeng/avatar';
@@ -154,6 +158,8 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRegisterComponent } from './pages/app.register.component';
 import { CustomerDetailsComponent } from './my-works/customer-tables/customer-details.component';
 import { StoreModule } from '@ngrx/store';
+import { NgrxTutorialComponent } from './my-works/ngrx-tutorial/ngrx-tutorial.component';
+import { NgrxAnotherComponent } from './my-works/ngrx-another/ngrx-another.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -263,7 +269,7 @@ export function tokenGetter() {
         }),
         ReactiveFormsModule,
         SocialLoginModule,
-        StoreModule.forRoot({}, {}),
+        StoreModule.forRoot({count:counterReducer}, {}),
     ],
     declarations: [
         AppComponent,
@@ -311,7 +317,9 @@ export function tokenGetter() {
         AppLoginComponent,
         AppRegisterComponent,
         CustomersComponent,
-        CustomerDetailsComponent
+        CustomerDetailsComponent,
+        NgrxTutorialComponent,
+        NgrxAnotherComponent
     ],
     providers: [
         {
