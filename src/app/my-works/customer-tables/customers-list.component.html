@@ -22,8 +22,8 @@
 			</p-toolbar>
 
 			<p-table #dt [value]="customers1['alicilar']" [columns]="cols" [rows]="10" [paginator]="false"
-				[globalFilterFields]="['name','country.name','representative.name','status']"
-				[(selection)]="selectedCustomers" [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+				[globalFilterFields]="['aliciID','aliciName','address','aliciTelNo']" [rowHover]="true" dataKey="id"
+				styleClass="p-datatable-customers"
 				currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
 				[showCurrentPageReport]="true">
 				<ng-template pTemplate="caption">

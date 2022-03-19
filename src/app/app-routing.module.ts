@@ -39,8 +39,8 @@ import { AppAccessdeniedComponent } from './pages/app.accessdenied.component';
 import { AppLoginComponent } from './pages/app.login.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRegisterComponent } from './pages/app.register.component';
-import { CustomersComponent } from './tables/customer-tables/customers-list.component';
-import { CustomerDetailsComponent } from './tables/customer-tables/customer-details.component';
+import { CustomersComponent } from './my-works/customer-tables/customers-list.component';
+import { CustomerDetailsComponent } from './my-works/customer-tables/customer-details.component';
 
 @NgModule({
     imports: [
@@ -49,8 +49,8 @@ import { CustomerDetailsComponent } from './tables/customer-tables/customer-deta
                 path: '', component: AppMainComponent,
                 canActivate: [AuthGuardService],
                 children: [
-                    { path: '', component: CustomersComponent},
-                    // { path: '', component: DashboardDemoComponent },
+                    { path: '', component: DashboardDemoComponent },
+                    { path: 'customers', component: CustomersComponent},
                     { path: 'uikit/formlayout', component: FormLayoutDemoComponent },
                     { path: 'uikit/floatlabel', component: FloatLabelDemoComponent },
                     { path: 'uikit/invalidstate', component: InvalidStateDemoComponent },

@@ -42,6 +42,12 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
+                label:'Yapilanlar',
+                items:[
+                    {label:'Customer Table',icon:'pi pi-fw pi-pencil',routerLink:['/customers']}
+                ]
+            },
+            {
                 label: 'UI Kit', icon: 'pi pi-fw pi-star', routerLink: ['/uikit'],
                 items: [
                     {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']},
@@ -133,11 +139,8 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'Start', icon: 'pi pi-fw pi-download',
+                label: 'Documentation', icon: 'pi pi-fw pi-download',
                 items: [
-                    {
-                        label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
-                    },
                     {
                         label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
                     }
