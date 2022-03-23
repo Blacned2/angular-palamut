@@ -1,41 +1,52 @@
 <div class="p-grid">
 	<div class="p-col-12">
-
 		<p-toast></p-toast>
-
 		<div class="card">
 			<p-toolbar styleClass="p-mb-4">
-				<ng-template pTemplate="left">
-					<button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
-						(click)="createAction()"></button>
-					<button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2"
-						(click)="deleteSelectedProducts()"
-						[disabled]="!selectedProducts || !selectedProducts.length"></button>
-				</ng-template>
-
-				<ng-template pTemplate="right">
+				<div class="p-col-4">
+					<app-customer-create (emitter)="getCustomers()"></app-customer-create>
+					<button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2"></button>
+				</div>
+				<div class="p-col-4 p-d-flex" style="justify-content: center;">
+					<form #searchForm="ngForm" class="p-d-flex">
+						<button (click)="showSearchBar()" type="submit" value="Specific Search" pButton pRipple
+							class="p-d-inline-block p-mr-1" icon="pi pi-search"></button>
+						<div id="sInput" style="transition: 0.2s ease-in-out;opacity: 0;">
+							<input [disabled]="switcher" pInputText name="searchString" id='sInput' ngModel
+								[(ngModel)]="searchString" type="text" placeholder="Search..." />
+							<button [disabled]="switcher" pButton pRipple icon="pi pi-times"
+								(click)="hideSearchBar()"></button>
+						</div>
+					</form>
+				</div>
+				<div class="p-col-4 p-d-flex" style="justify-content: end;">
 					<p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import"
 						chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
-					<button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help p-mb-2"
-						(click)="dt.exportCSV()"></button>
-				</ng-template>
+					<button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help p-mb-2"></button>
+				</div>
 			</p-toolbar>
 
-			<p-table #dt [value]="customers1['alicilar']" [columns]="cols" [rows]="10" [paginator]="false"
-				[globalFilterFields]="['aliciID','aliciName','address','aliciTelNo']" [rowHover]="true" dataKey="id"
-				styleClass="p-datatable-customers"
+			<app-search-table [output]="searchedCustomers" [toggle]="specificSearch"></app-search-table>
+
+			<p-table *ngIf="!specificSearch" #dt [value]="customers1['alicilar']" [columns]="cols" [rows]="10"
+				[paginator]="false" [globalFilterFields]="['aliciID','aliciName','address','aliciTelNo']"
+				[rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
 				currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
 				[showCurrentPageReport]="true">
 				<ng-template pTemplate="caption">
 					<div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
 						<h5 class="p-m-0">Manage Products</h5>
-						
-						<span class="p-input-icon-left">
-							<button pButton type="button" (click)="exportAsExcel()" class="p-button-help" style="margin-right: 1em;" icon="pi pi-print"></button>
-							<i class="pi pi-search"></i>
-							<input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-								placeholder="Search..." />
-						</span>
+						<div>
+							<button pButton type="button" (click)="getCustomers()" class="p-button-help p-mr-2"
+								icon="pi pi-refresh"></button>
+							<button pButton type="button" (click)="exportAsExcel()" class="p-button-help p-mr-2"
+								icon="pi pi-print"></button>
+							<span class="p-input-icon-left">
+								<i class="pi pi-search"></i>
+								<input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+									placeholder="Search..." />
+							</span>
+						</div>
 					</div>
 				</ng-template>
 				<ng-template pTemplate="header">
@@ -58,8 +69,8 @@
 				<ng-template pTemplate="body" let-customer>
 					<tr id="excel-table">
 						<td>
-							<button routerLink="/customer-detail/{{customer.aliciID}}" pButton pRipple icon="pi pi-align-justify"
-								class="p-mr-2"></button>
+							<button routerLink="/customer-detail/{{customer.aliciID}}" pButton pRipple
+								icon="pi pi-align-justify" class="p-mr-2"></button>
 						</td>
 						<td><span class="p-column-title">#</span>
 							{{customer.aliciID}}
@@ -74,43 +85,16 @@
 							{{customer.aliciTelNo}}
 						</td>
 						<td>
-							<button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-								(click)="editAction(customer)"></button>
-							<button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-								(click)="deleteAction(customer.aliciID)"></button>
+							<app-customer-edit (emitter)="getCustomers($event)" [customer]="customer">
+							</app-customer-edit>
+							<app-customer-delete (emitter)="getCustomers($event)" [customerId]='customer.aliciID'>
+							</app-customer-delete>
 						</td>
 					</tr>
 				</ng-template>
 			</p-table>
-			<p-paginator [rows]="10" [totalRecords]="this.maxPage" (onPageChange)="paginate($event)"></p-paginator>
+			<p-paginator *ngIf="!specificSearch" [rows]="10" [totalRecords]="this.maxPage"
+				(onPageChange)="paginate($event)"></p-paginator>
 		</div>
-
-		<p-dialog [(visible)]="customerDialog" [style]="{width: '600px'}" header="Customer Details" [modal]="true"
-			styleClass="p-fluid">
-			<ng-template pTemplate="content">
-				<div class="p-field">
-					<label for="name">Name</label>
-					<input type="text" pInputText id="aliciName" [(ngModel)]="customer.aliciName" required autofocus />
-					<small class="p-invalid" *ngIf="submitted && !customer.aliciName">Name is required.</small>
-				</div>
-				<div class="p-field">
-					<label for="description">Address</label>
-					<input type="text" pInputText id="address" [(ngModel)]="customer.address" required autofocus />
-				</div>
-				<div class="p-field">
-					<label for="description">Phone Number</label>
-					<input type="text" pInputText id="aliciTelNo" [(ngModel)]="customer.aliciTelNo" required
-						autofocus />
-				</div>
-			</ng-template>
-			<ng-template pTemplate="footer">
-				<button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
-					(click)="hideDialog()"></button>
-				<button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
-					(click)="saveCustomer()"></button>
-			</ng-template>
-		</p-dialog>
-
-		<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 	</div>
 </div>

@@ -1,0 +1,25 @@
+<p-toast></p-toast>
+<button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+    (click)="editAction(customer)"></button>
+<p-dialog [(visible)]="customerDialog" [style]="{width: '600px'}" header="Customer Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="name">Name</label>
+            <input type="text" pInputText id="aliciName" [(ngModel)]="customer.aliciName" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !customer.aliciName">Name is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="description">Address</label>
+            <input type="text" pInputText id="address" [(ngModel)]="customer.address" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="description">Phone Number</label>
+            <input type="text" pInputText id="aliciTelNo" [(ngModel)]="customer.aliciTelNo" required autofocus />
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCustomer()"></button>
+    </ng-template>
+</p-dialog>

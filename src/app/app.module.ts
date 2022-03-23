@@ -156,10 +156,16 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRegisterComponent } from './pages/app.register.component';
-import { CustomerDetailsComponent } from './my-works/customer-tables/customer-details.component';
 import { StoreModule } from '@ngrx/store';
 import { NgrxTutorialComponent } from './my-works/ngrx-tutorial/ngrx-tutorial.component';
 import { NgrxAnotherComponent } from './my-works/ngrx-another/ngrx-another.component';
+import { RxjsTutorialsComponent } from './my-works/rxjs-tutorials/rxjs-tutorials.component';
+import { RxjsAnotherComponent } from './my-works/rxjs-another/rxjs-another.component';
+import { SearchTableComponent } from './my-works/search-table/search-table.component';
+import { CustomerDeleteComponent } from './my-works/customer-tables/customer-delete/customer-delete.component';
+import { CustomerDetailComponent } from './my-works/customer-tables/customer-detail/customer-detail.component';
+import { CustomerEditComponent } from './my-works/customer-tables/customer-edit/customer-edit.component';
+import { CustomerCreateComponent } from './my-works/customer-tables/customer-create/customer-create.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -317,9 +323,15 @@ export function tokenGetter() {
         AppLoginComponent,
         AppRegisterComponent,
         CustomersComponent,
-        CustomerDetailsComponent,
         NgrxTutorialComponent,
-        NgrxAnotherComponent
+        NgrxAnotherComponent,
+        RxjsTutorialsComponent,
+        RxjsAnotherComponent,
+        SearchTableComponent,
+        CustomerDeleteComponent,
+        CustomerDetailComponent,
+        CustomerEditComponent,
+        CustomerCreateComponent,
     ],
     providers: [
         {

@@ -46,7 +46,8 @@ export class AppMenuComponent implements OnInit {
                 items:[
                     {label:'Customer Table',icon:'pi pi-fw pi-pencil',routerLink:['/customers']},
                     {label:'Ng Redux page1',icon:'pi pi-fw pi-share-alt',routerLink:['/ngrxTutorial']},
-                    {label:'Ng Redux page2',icon:'pi pi-fw pi-share-alt',routerLink:['/ngrxAnother']},
+                    {label:'Ng Redux page2',icon:'pi pi-fw pi-pencil',routerLink:['/ngrxAnother']},
+                    {label:'RxJs',icon:'pi pi-fw pi-share-alt',routerLink:['/rxjsTutorial']},
                 ]
             },
             {

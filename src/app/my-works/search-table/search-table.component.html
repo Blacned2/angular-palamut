@@ -1,0 +1,64 @@
+
+<p-toast></p-toast>
+<p-table *ngIf="toggle && output != null" #dt [value]="output"
+				[paginator]="false" [globalFilterFields]="['aliciID','aliciName','address','aliciTelNo']"
+				[rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+				currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+				<ng-template pTemplate="caption">
+					<div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+						<h5 class="p-m-0">Manage Products</h5>
+						<div>
+							<button pButton type="button" (click)="exportAsExcel()" class="p-button-help p-mr-2"
+								icon="pi pi-print"></button>
+							<span class="p-input-icon-left">
+								<i class="pi pi-search"></i>
+								<input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+									placeholder="Search..." />
+							</span>
+						</div>
+					</div>
+				</ng-template>
+				<ng-template pTemplate="header">
+					<tr>
+						<th style="width: 3rem">
+						</th>
+						<th pSortableColumn="aliciID"># <p-sortIcon field="#"></p-sortIcon>
+						</th>
+						<th pSortableColumn="aliciName">Name <p-sortIcon field="#"></p-sortIcon>
+						</th>
+						<th pSortableColumn="address">Address <p-sortIcon field="address"></p-sortIcon>
+						</th>
+						<th pSortableColumn="aliciTelNo">Phone Number <p-sortIcon field="aliciTelNo"></p-sortIcon>
+						</th>
+						<th>
+							Delete
+						</th>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="body" let-output>
+					<tr id="excel-table">
+						<td>
+							<button routerLink="/customer-detail/{{output.aliciID}}" pButton pRipple
+								icon="pi pi-align-justify" class="p-mr-2"></button>
+						</td>
+						<td><span class="p-column-title">#</span>
+							{{output.aliciID}}
+						</td>
+						<td><span class="p-column-title">Name</span>
+							{{output.aliciName}}
+						</td>
+						<td><span class="p-column-title">Address</span>
+							{{output.address}}
+						</td>
+						<td><span class="p-column-title">Phone Number</span>
+							{{output.aliciTelNo}}
+						</td>
+						<td>
+							<button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+								(click)="editAction(output)"></button>
+							<button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+								(click)="deleteAction(output.aliciID)"></button>
+						</td>
+					</tr>
+				</ng-template>
+			</p-table>

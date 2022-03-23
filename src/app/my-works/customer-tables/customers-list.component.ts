@@ -1,8 +1,9 @@
 import { _isNumberValue } from '@angular/cdk/coercion';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { customersSearchModel } from 'src/app/models/customerSearch';
 import * as XLSX from 'xlsx';
 import { customersModel } from '../../models/customers';
 
@@ -13,50 +14,54 @@ import { customersModel } from '../../models/customers';
         :host ::ng-deep .p-datatable-gridlines p-progressBar {
             width: 100%;
         }
-        
         @media screen and (max-width: 960px) {
             :host ::ng-deep .p-datatable.p-datatable-customers.rowexpand-table .p-datatable-tbody > tr > td:nth-child(6) {
                 display: flex;
             }
         }
-
     `],
-    providers:[ConfirmationService,MessageService]
+    providers: [ConfirmationService, MessageService]
 })
 export class CustomersComponent implements OnInit {
 
     customersUrl = 'https://localhost:44350/api/Alicilar/AliciList/';
 
-    customerDeleteUrl = 'https://localhost:44350/api/Alicilar/AliciSil/';
+    customerSearchUrl = 'https://localhost:44350/api/Alicilar/AliciSearch?searchString=';
 
-    addUpdateUrl = 'https://localhost:44350/api/Alicilar/AliciEkleGuncelle';
-    customerDialog:boolean;
+    customerDialog: boolean;
 
-    cols:any[];
+    cols: any[];
 
     currPage: number = 1;
 
     maxPage: number = 0;
 
-    dateTime = new Date()
-
     rowGroupMetadata: any;
 
     customers1: any[] = [];
+
+    searchedCustomers: customersSearchModel[] = [];
+
+    searchString: string = '';
 
     selectedCustomers: any[] = [];
 
     selectedCustomer: customersModel;
 
-    statuses: any[];
+    specificSearch: boolean;
 
     activityValues: number[] = [0, 100];
 
+    submitted: boolean;
+
+    switcher: boolean = true;
+
     @ViewChild('dt') table: Table;
 
-    constructor(private httpClient: HttpClient,private confirmationService:ConfirmationService,private messageService:MessageService) { }
+    constructor(private httpClient: HttpClient, private messageService: MessageService) { }
 
     getCustomers() {
+        this.specificSearch = false;
         this.httpClient.get<any[]>(this.customersUrl + this.currPage).subscribe(data => {
             this.customers1 = data;
             this.maxPage = data['maxPage'];
@@ -72,72 +77,47 @@ export class CustomersComponent implements OnInit {
         this.getCustomers();
     }
 
-    deleteThis(id:number) {
-        this.confirmationService.confirm({
-            key: 'deleteThis',
-            message: 'Are you sure to perform this action?'
-        });
+    exportAsExcel() {
+        const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.customers1['alicilar']);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Customers')
+
+        XLSX.writeFile(wb, 'customer-list.xlsx');
     }
 
-
-    
-    deleteAction(id) {
-        this.confirmationService.confirm({
-            message: 'Silmek istediginizden emin misiniz ?',
-            header: 'Confirm',
-            icon: 'pi pi-exclamation-triangle',
-            
-            accept: () => {
-                this.httpClient.delete(this.customerDeleteUrl+id).subscribe((result) =>{
-                    console.log(result);
-                    this.getCustomers()
-                });
-                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Customer Deleted', life: 2000});
-            },
-        });
-    }
-
-    customer:customersModel['alicilar']
-
-    editAction(customer: customersModel['alicilar']) {
-        this.customer = {...customer};
-        this.customerDialog = true;
-    }
-
-    createAction(){ 
-        this.customer = {aliciID:0,address:'',aliciName:'',aliciTelNo:''};
-        this.customerDialog = true;
-    }
-
-    hideDialog(){
-        this.customerDialog = false;
-    }
-    submitted:boolean;
-    saveCustomer(){
-        this.submitted = true;
-        if(this.customer.aliciName.trim()){
-            if(this.customer.aliciID){
-                this.httpClient.post(this.addUpdateUrl+'?id='+this.customer.aliciID,this.customer).subscribe((result)=>{
-                    console.log(result,'edit');
-                    this.getCustomers();
-                    this.customerDialog = false;
-                })
-            }else{
-                this.httpClient.post(this.addUpdateUrl,this.customer).subscribe((result)=>{
-                    console.log(result,'create');
-                    this.getCustomers();
-                    this.customerDialog = false;
-                })
+    showSearchBar() {
+        let element = document.getElementById('sInput');
+        if (element.classList.contains('opened')) {
+            if (this.searchString != '') {
+                if (this.searchedCustomers.length > 0) {
+                    this.specificSearch = true;
+                }
+                this.httpClient.get<customersSearchModel[]>(this.customerSearchUrl + this.searchString)
+                    .toPromise()
+                    .then(output => {
+                        this.searchedCustomers = output;
+                    })
+                    .catch(error => {
+                        this.messageService.add({ severity: 'warn', summary: 'Warning', detail: error.error, life: 2000 });
+                    })
+            } else {
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Bir deger giriniz', life: 2000 })
             }
         }
+
+        element.style.transition = '0.2s ease-in-out'
+        element.style.opacity = '1';
+        element.classList.add('opened')
+        this.switcher = false;
     }
 
-    exportAsExcel(){
-        const ws:XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.customers1['alicilar']);
-        const wb:XLSX.WorkBook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb,ws,'Customers')
+    hideSearchBar() {
+        let element = document.getElementById('sInput');
+        element.style.transition = '0.3s ease-in-out'
 
-        XLSX.writeFile(wb,'customer-list.xlsx');
+        element.style.opacity = '0'
+        element.classList.remove('opened')
+        this.specificSearch = false;
+        this.switcher = true;
     }
-
 }

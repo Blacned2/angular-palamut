@@ -1,29 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { customerModel } from 'src/app/models/customer';
 import { customersModel } from 'src/app/models/customers';
 
 @Component({
-  selector: 'app-customer-details',
-  templateUrl: './customer-details.component.html',
+  selector: 'app-customer-detail',
+  templateUrl: './customer-detail.component.html',
+  styleUrls: ['./customer-detail.component.scss']
 })
-export class CustomerDetailsComponent implements OnInit {
+export class CustomerDetailComponent implements OnInit {
 
   customerDialog: boolean = false;
+
   isDataLoaded: boolean = false;
+
   id: any;
+
   item: customerModel = { alici: { address: '', aliciID: 0, aliciName: '', aliciTelNo: '' }, alicilar: null, maxPage: null, status: null };
+
   customerGetUrl = 'https://localhost:44350/api/Alicilar/SingleAlici/';
+
   addUpdateUrl = 'https://localhost:44350/api/Alicilar/AliciEkleGuncelle';
+
   submitted: boolean;
+
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router) { }
+
   ngOnInit(): void {
     this.getId();
     this.getData();
     this.isDataLoaded = true;
   }
-
 
   customer: customerModel['alicilar'];
 
@@ -52,6 +60,7 @@ export class CustomerDetailsComponent implements OnInit {
       this.id = paramMap.get('id');
     })
   }
+
   getData() {
     this.httpClient.get<customerModel>(this.customerGetUrl + this.id).subscribe((result) => {
       this.item = result;
