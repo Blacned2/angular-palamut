@@ -166,6 +166,7 @@ import { CustomerDeleteComponent } from './my-works/customer-tables/customer-del
 import { CustomerDetailComponent } from './my-works/customer-tables/customer-detail/customer-detail.component';
 import { CustomerEditComponent } from './my-works/customer-tables/customer-edit/customer-edit.component';
 import { CustomerCreateComponent } from './my-works/customer-tables/customer-create/customer-create.component';
+import { TodoComponent } from './my-works/todo/todo.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -332,6 +333,7 @@ export function tokenGetter() {
         CustomerDetailComponent,
         CustomerEditComponent,
         CustomerCreateComponent,
+        TodoComponent,
     ],
     providers: [
         {

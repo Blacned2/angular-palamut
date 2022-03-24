@@ -10,12 +10,14 @@ import { Observable } from 'rxjs';
 export class NgrxAnotherComponent implements OnInit {
 
   count$:Observable<number>;
-
+  todoLen;
   constructor(private store:Store<{count:number}>) { 
     this.count$ = store.pipe(select('count'))
+    
   }
   
   
   ngOnInit(): void {
+
   }
 }

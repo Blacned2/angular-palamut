@@ -44,6 +44,7 @@ import { NgrxTutorialComponent } from './my-works/ngrx-tutorial/ngrx-tutorial.co
 import { NgrxAnotherComponent } from './my-works/ngrx-another/ngrx-another.component';
 import { RxjsTutorialsComponent } from './my-works/rxjs-tutorials/rxjs-tutorials.component';
 import { CustomerDetailComponent } from './my-works/customer-tables/customer-detail/customer-detail.component';
+import { TodoComponent } from './my-works/todo/todo.component';
 
 @NgModule({
     imports: [
@@ -55,8 +56,9 @@ import { CustomerDetailComponent } from './my-works/customer-tables/customer-det
                     { path: '', component: DashboardDemoComponent },
                     { path: 'customers', component: CustomersComponent },
                     { path: 'ngrxTutorial', component: NgrxTutorialComponent },
-                    { path: 'ngrxAnother', component: NgrxAnotherComponent},
-                    { path: 'rxjsTutorial', component: RxjsTutorialsComponent},
+                    { path: 'ngrxAnother', component: NgrxAnotherComponent },
+                    { path: 'rxjsTutorial', component: RxjsTutorialsComponent },
+                    { path: 'todos', component: TodoComponent },
                     { path: 'uikit/formlayout', component: FormLayoutDemoComponent },
                     { path: 'uikit/floatlabel', component: FloatLabelDemoComponent },
                     { path: 'uikit/invalidstate', component: InvalidStateDemoComponent },
