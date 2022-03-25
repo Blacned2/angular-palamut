@@ -170,6 +170,7 @@ import { TodoComponent } from './my-works/todo/todo.component';
 import { WriteItBackComponent } from './my-works/write-it-back/write-it-back.component';
 import { SpinnerComponent } from './my-works/spinner/spinner.component';
 import { SpinnerInterceptorService } from './demo/service/spinner-interceptor.service';
+import { ProductsListComponent } from './my-works/palamut-tables/products-list/products-list.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -339,6 +340,7 @@ export function tokenGetter() {
         TodoComponent,
         WriteItBackComponent,
         SpinnerComponent,
+        ProductsListComponent,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true },

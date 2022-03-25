@@ -41,7 +41,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Yaptiklarim', icon: 'pi pi-fw pi-sitemap',routerLink:['/my-works'],
                         items: [
-                            { label: 'Customer Table', icon: 'pi pi-fw pi-bars', routerLink: ['/my-works/customers'] },
+                            { label: 'Palamut Tables', icon: 'pi pi-fw pi-bars', routerLink: ['/my-works/customers'] },
                             { label: 'Ng Redux page1', icon: 'pi pi-fw pi-share-alt', routerLink: ['/my-works/ngrxTutorial'] },
                             { label: 'Ng Redux page2', icon: 'pi pi-fw pi-pencil', routerLink: ['/my-works/ngrxAnother'] },
                             { label: 'RxJs', icon: 'pi pi-fw pi-share-alt', routerLink: ['/my-works/rxjsTutorial'] },

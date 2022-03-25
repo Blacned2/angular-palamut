@@ -2,13 +2,11 @@ import { _isNumberValue } from '@angular/cdk/coercion';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Checkbox } from 'primeng/checkbox';
 import { Table } from 'primeng/table';
 import { Product } from 'src/app/demo/domain/product';
 import { ProductService } from 'src/app/demo/service/productservice';
 import { customersSearchModel } from 'src/app/models/customerSearch';
 import * as XLSX from 'xlsx';
-import { customersModel } from '../../models/customers';
 
 @Component({
     templateUrl: './customers-list.component.html',
@@ -68,6 +66,7 @@ export class CustomersComponent implements OnInit {
     getProducts(){
         this.specificSearch = false;
         this.products1 = this.productService.getProducts();
+        console.log(this.products1);
     }
 
     ngOnInit() {

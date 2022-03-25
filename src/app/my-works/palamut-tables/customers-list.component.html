@@ -2,7 +2,7 @@
 	<div class="p-col-12">
 		<p-toast></p-toast>
 		<p-tabView orientation="left">
-			<p-tabPanel header="Customers Table" leftIcon="pi pi-table">
+			<p-tabPanel header="Customers Table" leftIcon="pi pi-user">
 				<div class="card">
 					<p-toolbar styleClass="p-mb-4">
 						<div class="p-col-4">
@@ -100,14 +100,8 @@
 						(onPageChange)="paginate($event)"></p-paginator>
 				</div>
 			</p-tabPanel>
-			<p-tabPanel header="Header II" leftIcon="pi pi-user">
-				Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-				totam rem aperiam, eaque
-				ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
-				enim ipsam voluptatem quia
-				voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-				voluptatem sequi nesciunt.
-				Consectetur, adipisci velit, sed quia non numquam eius modi.
+			<p-tabPanel header="Products List" leftIcon="pi pi-table">
+				<app-products-list></app-products-list>
 			</p-tabPanel>
 			<p-tabPanel header="Header III" leftIcon="pi pi-mobile">
 				At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
