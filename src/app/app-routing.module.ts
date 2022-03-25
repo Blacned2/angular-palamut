@@ -39,12 +39,13 @@ import { AppAccessdeniedComponent } from './pages/app.accessdenied.component';
 import { AppLoginComponent } from './pages/app.login.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRegisterComponent } from './pages/app.register.component';
-import { CustomersComponent } from './my-works/customer-tables/customers-list.component';
+import { CustomersComponent } from './my-works/palamut-tables/customers-list.component';
 import { NgrxTutorialComponent } from './my-works/ngrx-tutorial/ngrx-tutorial.component';
 import { NgrxAnotherComponent } from './my-works/ngrx-another/ngrx-another.component';
 import { RxjsTutorialsComponent } from './my-works/rxjs-tutorials/rxjs-tutorials.component';
-import { CustomerDetailComponent } from './my-works/customer-tables/customer-detail/customer-detail.component';
+import { CustomerDetailComponent } from './my-works/palamut-tables/customer-detail/customer-detail.component';
 import { TodoComponent } from './my-works/todo/todo.component';
+import { WriteItBackComponent } from './my-works/write-it-back/write-it-back.component';
 
 @NgModule({
     imports: [
@@ -54,11 +55,13 @@ import { TodoComponent } from './my-works/todo/todo.component';
                 canActivate: [AuthGuardService],
                 children: [
                     { path: '', component: DashboardDemoComponent },
-                    { path: 'customers', component: CustomersComponent },
-                    { path: 'ngrxTutorial', component: NgrxTutorialComponent },
-                    { path: 'ngrxAnother', component: NgrxAnotherComponent },
-                    { path: 'rxjsTutorial', component: RxjsTutorialsComponent },
-                    { path: 'todos', component: TodoComponent },
+                    { path: 'my-works/customers', component: CustomersComponent },
+                    { path: 'my-works/ngrxTutorial', component: NgrxTutorialComponent },
+                    { path: 'my-works/ngrxAnother', component: NgrxAnotherComponent },
+                    { path: 'my-works/rxjsTutorial', component: RxjsTutorialsComponent },
+                    { path: 'my-works/todos', component: TodoComponent },
+                    { path: 'my-works/customer-detail/:id', component: CustomerDetailComponent },
+                    { path: 'my-works/write-it-back', component: WriteItBackComponent },
                     { path: 'uikit/formlayout', component: FormLayoutDemoComponent },
                     { path: 'uikit/floatlabel', component: FloatLabelDemoComponent },
                     { path: 'uikit/invalidstate', component: InvalidStateDemoComponent },
@@ -90,7 +93,6 @@ import { TodoComponent } from './my-works/todo/todo.component';
                     { path: 'pages/timeline', component: AppTimelineDemoComponent },
                     { path: 'pages/empty', component: EmptyDemoComponent },
                     { path: 'documentation', component: DocumentationComponent },
-                    { path: 'customer-detail/:id', component: CustomerDetailComponent },
                 ]
             },
             { path: 'error', component: AppErrorComponent },

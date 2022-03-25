@@ -16,7 +16,6 @@ export class NgrxAnotherComponent implements OnInit {
     
   }
   
-  
   ngOnInit(): void {
 
   }

@@ -1,6 +1,8 @@
 <div class="card">
+    <h1>
+        Todo List
+    </h1>
     <p-toast></p-toast>
-    <h1>{{todoLength}} <span style="font-size: 20px;">- This is todo list's length</span></h1>
     <form #theForm>
         <button pButton pRipple class="p-col-2 p-mb-3 " (click)="addTodo(theForm.todo.value)">Add</button>
         <input pInputText class="p-col-10 p-mb-3" type="text" name="todo" placeholder="Add your todo to the list">
@@ -54,4 +56,5 @@
     </ng-template>
 </p-dialog>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+<p style="display: flex;justify-content: end;">Total displayed count : {{LengthCounter}}</p>
 </div>

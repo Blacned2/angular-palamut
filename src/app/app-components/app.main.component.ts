@@ -9,7 +9,6 @@ import {AppComponent} from '../app.component';
 })
 export class AppMainComponent {
 
-    overlayMenuActive: boolean;
 
     staticMenuDesktopInactive: boolean;
 
@@ -67,10 +66,6 @@ export class AppMainComponent {
                 this.menuService.reset();
             }
 
-            if (this.overlayMenuActive || this.staticMenuMobileActive) {
-                this.hideOverlayMenu();
-            }
-
             this.menuHoverActive = false;
             this.unblockBodyScroll();
         }
@@ -92,10 +87,6 @@ export class AppMainComponent {
         this.topbarUserMenuActive = false;
         this.topbarNotificationMenuActive = false;
         this.rightPanelMenuActive = false;
-
-        if (this.isOverlay()) {
-            this.overlayMenuActive = !this.overlayMenuActive;
-        }
 
         if (this.isDesktop()) {
             this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
@@ -191,7 +182,6 @@ export class AppMainComponent {
     }
 
     hideOverlayMenu() {
-        this.overlayMenuActive = false;
         this.staticMenuMobileActive = false;
     }
 

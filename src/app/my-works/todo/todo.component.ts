@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-todo',
@@ -13,6 +14,8 @@ export class TodoComponent implements OnInit {
 
   editModal: boolean;
 
+  log: number;
+
   todoList = [
     { id: 1, title: 'Yemek yemek' },
     { id: 2, title: 'Js gelistirmek' },
@@ -21,7 +24,10 @@ export class TodoComponent implements OnInit {
     { id: 5, title: 'Dotnet Core' },
     { id: 6, title: 'EF' },
   ];
-  todoLength: string = this.todoList.length.toString();
+
+  LengthCounter: number = this.todoList.length;
+
+  idCounter: number = this.todoList.length + 1;
 
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
@@ -33,7 +39,7 @@ export class TodoComponent implements OnInit {
     this.editModal = false;
   }
 
-  item = { id: this.todoList.length + 1, title: '' }
+  item = { id: this.idCounter, title: '' }
   addTodo(data) {
     if (data == '') {
       this.messageService.add({ severity: 'error', summary: 'Hata', detail: 'Bos todo giremezsiniz !', life: 2000 })
@@ -41,14 +47,16 @@ export class TodoComponent implements OnInit {
       this.messageService.add({ severity: 'error', summary: 'Hata', detail: `Ayni todo'dan birden fazla giremezsiniz !`, life: 2000 })
     }
     else {
+      this.idCounter += 1;
+      console.log(this.idCounter)
       this.item.title = data;
       this.todoList.push(this.item);
-      this.todoLength = this.todoList.length.toString();
+      this.item = { id: this.idCounter, title: '' };
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Todo eklendi', life: 2000 });
+      this.LengthCounter = this.todoList.length;
     }
   };
 
-  log: number;
   editThisTodo(data) {
     this.log = this.todoList.indexOf(data);
     this.item.title = data.title;
@@ -71,10 +79,10 @@ export class TodoComponent implements OnInit {
           this.todoList.indexOf(data), 1
         )
         this.messageService.add({ severity: 'warn', summary: 'Removed', detail: 'Todo silindi', life: 2000 })
-        this.todoLength = this.todoList.length.toString();
+        this.idCounter++;
+        this.LengthCounter = this.todoList.length;
       }
-    }
-    )
+    })
   };
 
 }

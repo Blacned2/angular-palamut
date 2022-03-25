@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocationStrategy, HashLocationStrategy, PathLocationStrategy } from '@angular/common';
@@ -117,7 +117,7 @@ import { InvalidStateDemoComponent } from './demo/view/invalidstatedemo.componen
 import { InputDemoComponent } from './demo/view/inputdemo.component';
 import { ButtonDemoComponent } from './demo/view/buttondemo.component';
 import { TableDemoComponent } from './demo/view/tabledemo.component';
-import { CustomersComponent } from './my-works/customer-tables/customers-list.component';
+import { CustomersComponent } from './my-works/palamut-tables/customers-list.component';
 import { ListDemoComponent } from './demo/view/listdemo.component';
 import { TreeDemoComponent } from './demo/view/treedemo.component';
 import { PanelsDemoComponent } from './demo/view/panelsdemo.component';
@@ -162,11 +162,14 @@ import { NgrxAnotherComponent } from './my-works/ngrx-another/ngrx-another.compo
 import { RxjsTutorialsComponent } from './my-works/rxjs-tutorials/rxjs-tutorials.component';
 import { RxjsAnotherComponent } from './my-works/rxjs-another/rxjs-another.component';
 import { SearchTableComponent } from './my-works/search-table/search-table.component';
-import { CustomerDeleteComponent } from './my-works/customer-tables/customer-delete/customer-delete.component';
-import { CustomerDetailComponent } from './my-works/customer-tables/customer-detail/customer-detail.component';
-import { CustomerEditComponent } from './my-works/customer-tables/customer-edit/customer-edit.component';
-import { CustomerCreateComponent } from './my-works/customer-tables/customer-create/customer-create.component';
+import { CustomerDeleteComponent } from './my-works/palamut-tables/customer-delete/customer-delete.component';
+import { CustomerDetailComponent } from './my-works/palamut-tables/customer-detail/customer-detail.component';
+import { CustomerEditComponent } from './my-works/palamut-tables/customer-edit/customer-edit.component';
+import { CustomerCreateComponent } from './my-works/palamut-tables/customer-create/customer-create.component';
 import { TodoComponent } from './my-works/todo/todo.component';
+import { WriteItBackComponent } from './my-works/write-it-back/write-it-back.component';
+import { SpinnerComponent } from './my-works/spinner/spinner.component';
+import { SpinnerInterceptorService } from './demo/service/spinner-interceptor.service';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -334,8 +337,11 @@ export function tokenGetter() {
         CustomerEditComponent,
         CustomerCreateComponent,
         TodoComponent,
+        WriteItBackComponent,
+        SpinnerComponent,
     ],
     providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true },
         {
             provide: 'SocialAuthServiceConfig',
             useValue: {

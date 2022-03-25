@@ -1,13 +1,9 @@
 <div class="layout-wrapper" [ngClass]="{'layout-horizontal': app.layoutMode === 'horizontal',
-    'layout-overlay': app.layoutMode === 'overlay',
     'layout-static': app.layoutMode === 'static',
     'layout-slim': app.layoutMode === 'slim',
     'layout-menu-light': app.lightMenu === true,
-    'layout-menu-dark': app.lightMenu === false,
-    'layout-overlay-active': overlayMenuActive,
     'layout-mobile-active': staticMenuMobileActive,
     'layout-static-inactive': staticMenuDesktopInactive,
-    'p-input-filled': app.inputStyle === 'filled',
     'p-ripple-disabled': !app.ripple}" [class]="app.topbarColor" (click)="onLayoutClick()">
     <app-topbar></app-topbar>
 
@@ -16,6 +12,7 @@
 
     <div class="layout-main">
         <div class="layout-content">
+            <spinner></spinner>
             <router-outlet></router-outlet>
         </div>
         <app-footer></app-footer>

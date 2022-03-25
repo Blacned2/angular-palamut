@@ -1,0 +1,123 @@
+<div class="p-grid">
+	<div class="p-col-12">
+		<p-toast></p-toast>
+		<p-tabView orientation="left">
+			<p-tabPanel header="Customers Table" leftIcon="pi pi-table">
+				<div class="card">
+					<p-toolbar styleClass="p-mb-4">
+						<div class="p-col-4">
+							<app-customer-create (emitter)="getCustomers()"></app-customer-create>
+							<button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2"></button>
+						</div>
+						<div class="p-col-4 p-d-flex" style="justify-content: center;">
+							<form #searchForm="ngForm" class="p-d-flex">
+								<button (click)="showSearchBar()" type="submit" value="Specific Search" pButton pRipple
+									class="p-d-inline-block p-mr-1" icon="pi pi-search"></button>
+								<div id="sInput" style="transition: 0.2s ease-in-out;opacity: 0;">
+									<input [disabled]="switcher" pInputText name="searchString" id='sInput' ngModel
+										[(ngModel)]="searchString" type="text" placeholder="Search..." />
+									<button [disabled]="switcher" pButton pRipple icon="pi pi-times"
+										(click)="hideSearchBar()"></button>
+								</div>
+							</form>
+						</div>
+						<div class="p-col-4 p-d-flex" style="justify-content: end;">
+							<p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import"
+								chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
+							<button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help p-mb-2"></button>
+						</div>
+					</p-toolbar>
+		
+					<app-search-table [output]="searchedCustomers"  [toggle]="specificSearch"></app-search-table>
+					
+						<p-table *ngIf="!specificSearch" #dt [value]="customers1['alicilar']" [(selection)]="selectedCustomers1" [columns]="cols" [rows]="10"
+							[paginator]="false" [globalFilterFields]="['aliciID','aliciName','address','aliciTelNo']"
+							[rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+							currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+							[showCurrentPageReport]="true">
+							<ng-template pTemplate="caption">
+								<div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+									<h5 class="p-m-0">Manage Customers</h5>
+									<div>
+										<button pButton type="button" (click)="getCustomers()" class="p-button-help p-mr-2"
+											icon="pi pi-refresh"></button>
+										<button pButton type="button" (click)="exportAsExcel()" class="p-button-help p-mr-2"
+											icon="pi pi-print"></button>
+										<span class="p-input-icon-left">
+											<i class="pi pi-search"></i>
+											<input pInputText type="text"
+												(input)="dt.filterGlobal($event.target.value, 'contains')"
+												placeholder="Search..." />
+										</span>
+									</div>
+								</div>
+							</ng-template>
+							<ng-template pTemplate="header">
+								<tr>
+									<th style="width: 3rem">
+									</th>
+									<th pSortableColumn="aliciID"># <p-sortIcon field="#"></p-sortIcon>
+									</th>
+									<th pSortableColumn="aliciName">Name <p-sortIcon field="#"></p-sortIcon>
+									</th>
+									<th pSortableColumn="address">Address <p-sortIcon field="address"></p-sortIcon>
+									</th>
+									<th pSortableColumn="aliciTelNo">Phone Number <p-sortIcon field="aliciTelNo"></p-sortIcon>
+									</th>
+									<th>
+										Delete
+									</th>
+								</tr>
+							</ng-template>
+							<ng-template pTemplate="body" let-customer>
+								<tr id="excel-table">
+									<td>
+										<button routerLink="/my-works/customer-detail/{{customer.aliciID}}" pButton pRipple
+											icon="pi pi-align-justify" class="p-mr-2"></button>
+									</td>
+									<td><span class="p-column-title">#</span>
+										{{customer.aliciID}}
+									</td>
+									<td><span class="p-column-title">Name</span>
+										{{customer.aliciName}}
+									</td>
+									<td><span class="p-column-title">Address</span>
+										{{customer.address}}
+									</td>
+									<td><span class="p-column-title">Phone Number</span>
+										{{customer.aliciTelNo}}
+									</td>
+									<td>
+										<app-customer-edit (emitter)="getCustomers($event)" [customer]="customer">
+										</app-customer-edit>
+										<app-customer-delete (emitter)="getCustomers($event)" [customerId]='customer.aliciID'>
+										</app-customer-delete>
+									</td>
+								</tr>
+							</ng-template>
+						</p-table>
+					<p-paginator *ngIf="!specificSearch" [rows]="10" [totalRecords]="this.maxPage"
+						(onPageChange)="paginate($event)"></p-paginator>
+				</div>
+			</p-tabPanel>
+			<p-tabPanel header="Header II" leftIcon="pi pi-user">
+				Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+				totam rem aperiam, eaque
+				ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
+				enim ipsam voluptatem quia
+				voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+				voluptatem sequi nesciunt.
+				Consectetur, adipisci velit, sed quia non numquam eius modi.
+			</p-tabPanel>
+			<p-tabPanel header="Header III" leftIcon="pi pi-mobile">
+				At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+				deleniti atque corrupti quos dolores
+				et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
+				officia deserunt mollitia animi, id est laborum et dolorum fuga.
+				Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est
+				eligendi optio cumque nihil impedit
+				quo minus.
+			</p-tabPanel>
+		</p-tabView>
+	</div>
+</div>

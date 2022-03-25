@@ -1,8 +1,11 @@
 import { _isNumberValue } from '@angular/cdk/coercion';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Checkbox } from 'primeng/checkbox';
 import { Table } from 'primeng/table';
+import { Product } from 'src/app/demo/domain/product';
+import { ProductService } from 'src/app/demo/service/productservice';
 import { customersSearchModel } from 'src/app/models/customerSearch';
 import * as XLSX from 'xlsx';
 import { customersModel } from '../../models/customers';
@@ -30,13 +33,13 @@ export class CustomersComponent implements OnInit {
 
     customerDialog: boolean;
 
+    products1: Promise<Product[]>;
+
     cols: any[];
 
     currPage: number = 1;
 
     maxPage: number = 0;
-
-    rowGroupMetadata: any;
 
     customers1: any[] = [];
 
@@ -44,13 +47,7 @@ export class CustomersComponent implements OnInit {
 
     searchString: string = '';
 
-    selectedCustomers: any[] = [];
-
-    selectedCustomer: customersModel;
-
     specificSearch: boolean;
-
-    activityValues: number[] = [0, 100];
 
     submitted: boolean;
 
@@ -58,7 +55,7 @@ export class CustomersComponent implements OnInit {
 
     @ViewChild('dt') table: Table;
 
-    constructor(private httpClient: HttpClient, private messageService: MessageService) { }
+    constructor(private productService:ProductService,private httpClient: HttpClient, private messageService: MessageService) { }
 
     getCustomers() {
         this.specificSearch = false;
@@ -66,6 +63,11 @@ export class CustomersComponent implements OnInit {
             this.customers1 = data;
             this.maxPage = data['maxPage'];
         })
+    }
+
+    getProducts(){
+        this.specificSearch = false;
+        this.products1 = this.productService.getProducts();
     }
 
     ngOnInit() {
@@ -120,4 +122,5 @@ export class CustomersComponent implements OnInit {
         this.specificSearch = false;
         this.switcher = true;
     }
+
 }

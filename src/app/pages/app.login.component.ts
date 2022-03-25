@@ -64,8 +64,6 @@ export class AppLoginComponent implements OnInit {
       this.socialUser = user;
       this.item.userName = this.socialUser.email.length
         + this.socialUser.email.substring(0, this.socialUser.email.length / 2)
-        + this.socialUser.email.slice(0, -8)
-        + this.socialUser.email.slice(5, -1)
         + `palamutSocialUser/${this.socialUser.email.length}`;
       this.item.email = this.socialUser.email.toLowerCase();
       this.item.password = this.socialUser.email + this.socialUser.lastName.length + this.socialUser.email.substring(0, 2);
@@ -96,8 +94,6 @@ export class AppLoginComponent implements OnInit {
       this.socialUser = user;
       this.item.userName = this.socialUser.email.length
         + this.socialUser.email.substring(0, this.socialUser.email.length / 2)
-        + this.socialUser.email.slice(0, -8)
-        + this.socialUser.email.slice(5, -1)
         + `palamutSocialUser/${this.socialUser.email.length}`;
       this.item.email = this.socialUser.email.toLowerCase();
       this.item.password = this.socialUser.email + this.socialUser.lastName.length + this.socialUser.email.substring(0, 2);
