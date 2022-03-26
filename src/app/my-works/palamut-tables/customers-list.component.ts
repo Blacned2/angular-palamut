@@ -9,6 +9,7 @@ import { customersSearchModel } from 'src/app/models/customerSearch';
 import * as XLSX from 'xlsx';
 
 @Component({
+    selector: 'app-customers-list',
     templateUrl: './customers-list.component.html',
     styleUrls: ['./tabledemo.scss'],
     styles: [`
@@ -53,7 +54,7 @@ export class CustomersComponent implements OnInit {
 
     @ViewChild('dt') table: Table;
 
-    constructor(private productService:ProductService,private httpClient: HttpClient, private messageService: MessageService) { }
+    constructor(private productService: ProductService, private httpClient: HttpClient, private messageService: MessageService) { }
 
     getCustomers() {
         this.specificSearch = false;
@@ -61,12 +62,6 @@ export class CustomersComponent implements OnInit {
             this.customers1 = data;
             this.maxPage = data['maxPage'];
         })
-    }
-
-    getProducts(){
-        this.specificSearch = false;
-        this.products1 = this.productService.getProducts();
-        console.log(this.products1);
     }
 
     ngOnInit() {

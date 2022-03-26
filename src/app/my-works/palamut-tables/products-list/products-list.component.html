@@ -7,7 +7,7 @@
         </div>
     </p-toolbar>
     <p-table #dt [value]="products" [columns]="cols" [rows]="10" [paginator]="true"
-        [globalFilterFields]="['aliciID','aliciName','address','aliciTelNo']" [rowHover]="true" dataKey="id"
+        [globalFilterFields]="['id','name','price','description','category']" [rowHover]="true" dataKey="id"
         styleClass="p-datatable-customers"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">

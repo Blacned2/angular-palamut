@@ -43,7 +43,7 @@ export class TodoComponent implements OnInit {
   addTodo(data) {
     if (data == '') {
       this.messageService.add({ severity: 'error', summary: 'Hata', detail: 'Bos todo giremezsiniz !', life: 2000 })
-    } else if (this.todoList.findIndex(u => u.title == data) > 0) {
+    } else if (this.todoList.findIndex(u => u.title == data) >= 0) {
       this.messageService.add({ severity: 'error', summary: 'Hata', detail: `Ayni todo'dan birden fazla giremezsiniz !`, life: 2000 })
     }
     else {
