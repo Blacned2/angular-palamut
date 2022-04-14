@@ -27,8 +27,5 @@ export class ProductsListComponent implements OnInit {
     }).catch((error) => {
       alert(error);
     })
-    
-    console.log(this.products);
-    console.log(this.productsLength);
   }
 }

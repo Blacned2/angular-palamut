@@ -1,5 +1,6 @@
-<div class="card">
-    <h1>Angular RxJs</h1>
+<div id="rxjs" class="card">
+    <h1 *ngIf="openCloseBar">Open Close Bar is Opened</h1>
+    <h3>Angular RxJs</h3>
     <h1>{{myCount}} <span style="font-size: 20px;">: value from child component</span></h1>
     <button class="p-m-1" pButton (click)="Inc()">+</button>
     <button class="p-m-1" pButton (click)="Dec()">-</button>

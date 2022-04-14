@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { Observable } from 'rxjs';
 import { Product } from 'src/app/demo/domain/product';
-import { ProductService } from 'src/app/demo/service/productservice';
+import { ProductService } from 'src/app/demo/service/productservice'; 
 import { customersSearchModel } from 'src/app/models/customerSearch';
 import * as XLSX from 'xlsx';
 
@@ -24,6 +25,7 @@ import * as XLSX from 'xlsx';
     `],
     providers: [ConfirmationService, MessageService]
 })
+
 export class CustomersComponent implements OnInit {
 
     customersUrl = 'https://localhost:44350/api/Alicilar/AliciList/';
@@ -116,5 +118,4 @@ export class CustomersComponent implements OnInit {
         this.specificSearch = false;
         this.switcher = true;
     }
-
 }
